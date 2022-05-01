@@ -14,6 +14,12 @@ module.exports = (sequelize, DataTypes) => {
       hp: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        validate: {
+          isInt: {
+            msg: "Utiliser uniquement des nombres entiers pour les points de vie.",
+          },
+          notNull: { msg: "les points de vie sont une propriété requise." },
+        },
       },
       cp: {
         type: DataTypes.INTEGER,
@@ -26,6 +32,12 @@ module.exports = (sequelize, DataTypes) => {
       types: {
         type: DataTypes.STRING,
         allowNull: false,
+        get() {
+          return this.getDataValue("types").split(",");
+        },
+        set(types) {
+          this.setDataValue("types", types.join());
+        },
       },
     },
     {
