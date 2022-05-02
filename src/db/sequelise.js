@@ -1,13 +1,15 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const PokemonModel = require("../models/pokemon");
 const pokemons = require("./mock-pokemon");
-
+//pour ce connecter a Xamp ("pokedex", "root", "") port: 3306 phpmyadmin cliquer sur admin dans le panel de xamp
+//pour ce connecter a Mamp ("pokedex", "root", "root") port: 8889 phpmyadmin cliquer sur openwebpage dans le panel de Mamp
 const sequelize = new Sequelize("pokedex", "root", "", {
   host: "localhost",
   dialect: "mysql",
   /*  dialectOptions: {
     timezone: 'Etc/GMT-2',
   },*/
+  port: 3306,
   logging: false,
 });
 
