@@ -1,8 +1,11 @@
 const { Pokemon } = require("../db/sequelise");
 //operateur de recherche sequelize { Op }
 const { Op } = require("sequelize");
+//auth
+const autch = require("../autch/autch");
+
 module.exports = (app) => {
-  app.get("/api/pokemons", (req, res) => {
+  app.get("/api/pokemons", autch, (req, res) => {
     if (req.query.name) {
       //recup du parmetre name dans l'url pour la recherche par nom d'un pokemn
       //if pokemons name trouvé / else retrun all pokemeons
@@ -17,7 +20,7 @@ module.exports = (app) => {
       //recup des donnée depuis la base sql
       //findAll a été remplacé par findAndCountAll pour afficher limite:5 et afficher en même temps tout les pokemons disponible sur /////plusieur pages si nécessaire.
       // 'name' est la propriete du model des pokemeons
-      // name est le critere de recherche= (recherche souple qui utilise une methode par lettre et limitée a 5 avec limite: 5) /3001//////api/pokemons?name=Bulbizarre
+      // name est le critere de recherche= (recherche souple qui utilise une methode par lettre et limitée a 5 avec limite: 5) /3001//////api/pokemons?name=ulbizarre
       //limite la recherche a 5 resultat
       //count, row vont avec la methode findAndCountAll
       // order: ['name'], affiche la recherche par resultat en ordre croissant , possibilité de faire order: ['name', ASC](par default) ou order: //['name', DESC]

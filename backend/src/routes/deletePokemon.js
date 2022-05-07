@@ -1,7 +1,8 @@
 const { Pokemon } = require("../db/sequelise");
+const autch = require("../autch/autch");
 
 module.exports = (app) => {
-  app.delete("/api/pokemons/:id", (req, res) => {
+  app.delete("/api/pokemons/:id", autch, (req, res) => {
     Pokemon.findByPk(req.params.id)
       .then((pokemon) => {
         const pokemonDeleted = pokemon;

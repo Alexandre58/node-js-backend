@@ -1,9 +1,9 @@
 const { Pokemon } = require("../db/sequelise");
 const pokemon = require("../models/pokemon");
-
+const autch = require("../autch/autch");
 module.exports = (app) => {
   //if client recherche par name else return all pokemons
-  app.get("/api/pokemons/:id", (req, res) => {
+  app.get("/api/pokemons/:id", autch, (req, res) => {
     Pokemon.findByPk(req.params.id)
       .then((pokemon) => {
         const message = "Un pokémon a bien été trouvé.";
